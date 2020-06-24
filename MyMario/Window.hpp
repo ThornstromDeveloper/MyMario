@@ -9,8 +9,13 @@ class Window
 	public:
 		Window(std::string);
 		virtual ~Window();
+
+		void destroy();
 		void setTitle(std::string title);
+
 		SDL_Window* window;
+		SDL_Surface* surface;
+		SDL_Renderer* renderer;
 
 	private:
 		std::string title;

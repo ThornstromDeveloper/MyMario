@@ -9,6 +9,22 @@ Window::Window(std::string title):
 
 Window::~Window()
 {
+	this->destroy();
+}
+
+void Window::destroy()
+{
+	if (this->renderer)
+	{
+		SDL_DestroyRenderer(this->renderer);
+		this->renderer = nullptr;
+	}
+
+	if (this->window)
+	{
+		SDL_DestroyWindow(this->window);
+		this->window = nullptr;
+	}
 }
 
 void Window::setTitle(std::string title)

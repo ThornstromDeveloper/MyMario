@@ -8,3 +8,8 @@ GameStateGame::GameStateGame(Window* window):
 GameStateGame::~GameStateGame()
 {
 }
+
+int GameStateGame::unload()
+{
+	return 0;
+}

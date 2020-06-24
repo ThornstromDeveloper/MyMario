@@ -10,6 +10,8 @@ class GameStateGame: public GameState
 		GameStateGame(Window* window);
 		virtual ~GameStateGame();
 
+		int unload();
+
 	private:
 		Window* window;
 };

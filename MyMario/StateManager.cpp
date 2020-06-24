@@ -10,6 +10,13 @@ StateManager::StateManager(Window* window):
 
 StateManager::~StateManager()
 {
+	if (this->currentState)
+	{
+		this->currentState->unload();
+		delete this->currentState;
+
+		this->currentState = nullptr;
+	}
 }
 
 void StateManager::run()
