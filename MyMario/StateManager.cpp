@@ -28,6 +28,8 @@ void StateManager::run()
 	{
 		GameState::StateCode whatToDoNow;
 
+		whatToDoNow = this->currentState->update();
+
 		if (this->window)
 		{
 			this->window->clear();

@@ -3,6 +3,7 @@
 
 #include "GameState.hpp"
 #include "Window.hpp"
+#include "InputManager.hpp"
 #include "Player.hpp"
 
 class GameStateGame: public GameState
@@ -13,8 +14,10 @@ class GameStateGame: public GameState
 
 		void load(int stack = 0);
 		int unload();
+		GameState::StateCode update();
 
 	private:
+		void updateInput();
 		Window* window;
 		Player* player;
 };

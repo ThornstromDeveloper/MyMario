@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="GameStateGame.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDL.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Animation.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameStateGame.hpp" />
+    <ClInclude Include="InputManager.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SDL.hpp" />
     <ClInclude Include="StateManager.hpp" />
