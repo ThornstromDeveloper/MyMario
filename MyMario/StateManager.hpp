@@ -1,6 +1,7 @@
 #ifndef STATEMANAGER_HPP
 #define STATEMANAGER_HPP
 
+#include "GameState.hpp"
 #include "Window.hpp"
 
 class StateManager
@@ -13,6 +14,7 @@ class StateManager
 
 	private:
 		Window* window;
+		GameState* currentState;
 };
 
 #endif //STATEMANAGER_HPP
