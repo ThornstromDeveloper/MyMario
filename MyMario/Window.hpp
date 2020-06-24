@@ -11,6 +11,8 @@ class Window
 		virtual ~Window();
 
 		void destroy();
+		void fill();
+		void clear();
 		void setTitle(std::string title);
 
 		SDL_Window* window;

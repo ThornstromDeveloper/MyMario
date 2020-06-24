@@ -22,4 +22,17 @@ StateManager::~StateManager()
 
 void StateManager::run()
 {
+	bool letsQuit = false;
+
+	while (!letsQuit)
+	{
+		GameState::StateCode whatToDoNow;
+
+		if (this->window)
+		{
+			this->window->clear();
+		}
+
+		letsQuit = true;
+	}
 }

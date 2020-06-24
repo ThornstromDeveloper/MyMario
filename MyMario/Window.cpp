@@ -5,6 +5,7 @@ Window::Window(std::string title):
 	title(title)
 {
 	this->setTitle(title);
+	this->clear();
 }
 
 Window::~Window()
@@ -25,6 +26,16 @@ void Window::destroy()
 		SDL_DestroyWindow(this->window);
 		this->window = nullptr;
 	}
+}
+
+void Window::fill() {
+	SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, 0.8);
+	SDL_RenderClear(this->renderer);
+}
+
+void Window::clear()
+{
+	this->fill();
 }
 
 void Window::setTitle(std::string title)

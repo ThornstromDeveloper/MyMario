@@ -2,7 +2,8 @@
 #include "Player.hpp"
 
 GameStateGame::GameStateGame(Window* window):
-	window(window)
+	window(window),
+	player(nullptr)
 {
 }
 
@@ -23,5 +24,7 @@ void GameStateGame::load(int stack)
 
 int GameStateGame::unload()
 {
+	delete this->player;
+
 	return 0;
 }
