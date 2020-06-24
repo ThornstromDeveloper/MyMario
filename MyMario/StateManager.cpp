@@ -6,6 +6,7 @@ StateManager::StateManager(Window* window):
 	currentState(nullptr)
 {
 	this->currentState = new GameStateGame(this->window);
+	this->currentState->load();
 }
 
 StateManager::~StateManager()

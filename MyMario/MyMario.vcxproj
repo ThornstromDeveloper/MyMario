@@ -145,8 +145,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="GameStateGame.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDL.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -155,8 +157,10 @@
     <None Include="..\.gitignore" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameStateGame.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="SDL.hpp" />
     <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="Window.hpp" />
