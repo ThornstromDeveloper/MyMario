@@ -11,6 +11,8 @@ class Window
 		virtual ~Window();
 
 		void destroy();
+		void refresh();
+		void resize(std::string title);
 		void fill();
 		void clear();
 		void setTitle(std::string title);
