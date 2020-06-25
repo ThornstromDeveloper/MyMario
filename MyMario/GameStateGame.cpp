@@ -43,6 +43,11 @@ GameState::StateCode GameStateGame::update()
 	return GameState::StateCode::CONTINUE;
 }
 
+void GameStateGame::render()
+{
+	this->player->render();
+}
+
 void GameStateGame::updateInput()
 {
 	InputManager* input = InputManager::getInstance();

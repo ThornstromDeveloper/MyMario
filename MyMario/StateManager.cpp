@@ -46,6 +46,8 @@ void StateManager::run()
 		if (this->window)
 		{
 			this->window->clear();
+			this->currentState->render();
+			this->window->refresh();
 		}
 	}
 }

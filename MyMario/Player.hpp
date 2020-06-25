@@ -1,17 +1,29 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include <vector>
+#include "Animation.hpp"
 #include "Window.hpp"
 
 class Player
 {
 	public:
+		enum PossibleAnimation
+		{
+			STANDING_RIGHT,
+			ANIMATION_MAX
+		};
+
 		Player(Window* window, float x, float y, int w, int h, int hp, float acceleration);
 		virtual ~Player();
+
+		void render();
 
 	private:
 		Window* window;
 		float acceleration;
+		Animation* currentAnimation;
+		std::vector<Animation*> animations;
 };
 
-#endif //GAMESTATEGAME_HPP
+#endif //PLAYER_HPP
