@@ -21,4 +21,5 @@ Player::~Player()
 
 void Player::render()
 {
+	this->currentAnimation->render(0,0);
 }

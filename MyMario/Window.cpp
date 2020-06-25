@@ -1,5 +1,6 @@
 #include "Window.hpp"
 #include <iostream>
+#include <SDL_image.h>
 
 Window::Window(std::string title):
 	window(nullptr),
@@ -65,6 +66,34 @@ void Window::destroy()
 void Window::refresh()
 {
 	SDL_RenderPresent(this->renderer);
+}
+
+SDL_Texture* Window::loadImage(std::string filename)
+{
+	SDL_Texture* texture = IMG_LoadTexture(this->renderer, filename.c_str());
+
+	if (!texture)
+	{
+		std::cout << "IMG_LoadTexture: Couldn't open image '" + filename + "': " + IMG_GetError();
+	}
+
+	return texture;
+}
+
+void Window::freeImage(SDL_Texture* image)
+{
+	if (image)
+	{
+		SDL_DestroyTexture(image);
+	}
+}
+
+void Window::freeImage(SDL_Surface* image)
+{
+	if (image)
+	{
+		SDL_FreeSurface(image);
+	}
 }
 
 void Window::fill() {

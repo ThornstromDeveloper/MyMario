@@ -11,6 +11,9 @@ class Window
 		virtual ~Window();
 
 		void destroy();
+		SDL_Texture* loadImage(std::string filename);
+		void freeImage(SDL_Texture* image);
+		void freeImage(SDL_Surface* image);
 		void refresh();
 		void resize(std::string title);
 		void fill();
