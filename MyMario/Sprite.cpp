@@ -43,4 +43,7 @@ void Sprite::crop(Rectangle rect)
 
 void Sprite::render(int x, int y)
 {
+	Rectangle destination(x, y, this->clipRect->w, this->clipRect->h);
+
+	this->window->renderImage(this->image, this->clipRect, &destination);
 }

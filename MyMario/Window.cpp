@@ -96,6 +96,20 @@ void Window::freeImage(SDL_Surface* image)
 	}
 }
 
+void Window::renderImage(SDL_Texture* texture, Rectangle* source, Rectangle* destination)
+{
+	if (!texture || !source || !destination)
+	{
+		std::cout << "Window::render: Tried to show a nullptr image";
+		return;
+	}
+
+	SDL_Rect sdl_source = { (int)source->x, (int)source->y, source->w, source->h };
+	SDL_Rect sdl_destination = { (int)destination->x, (int)destination->y, destination->w, destination->h };
+
+	SDL_RenderCopy(this->renderer, texture, &sdl_source, &sdl_destination);
+}
+
 void Window::fill() {
 	SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 0);
 	SDL_RenderClear(this->renderer);
