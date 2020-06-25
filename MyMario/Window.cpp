@@ -1,6 +1,7 @@
 #include "Window.hpp"
 #include <iostream>
 #include <SDL_image.h>
+#include "Timer.hpp"
 
 Window::Window(std::string title):
 	window(nullptr),

@@ -40,6 +40,8 @@ GameState::StateCode GameStateGame::update()
 
 	this->updateInput();
 
+	this->player->update();
+
 	return GameState::StateCode::CONTINUE;
 }
 

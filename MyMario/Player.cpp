@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "InputManager.hpp"
 
 Player::Player(Window* window, float x, float y, int w, int h, int hp, float acceleration):
 	window(window),
@@ -19,7 +20,17 @@ Player::~Player()
 {
 }
 
+void Player::update()
+{
+	this->updateInput();
+}
+
 void Player::render()
 {
 	this->currentAnimation->render(0,0);
+}
+
+void Player::updateInput()
+{
+	InputManager* input = InputManager::getInstance();
 }

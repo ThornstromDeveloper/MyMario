@@ -17,7 +17,9 @@ class Player
 		Player(Window* window, float x, float y, int w, int h, int hp, float acceleration);
 		virtual ~Player();
 
+		void update();
 		void render();
+		void updateInput();
 
 	private:
 		Window* window;
