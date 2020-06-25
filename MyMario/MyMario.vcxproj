@@ -151,6 +151,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDL.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="InputManager.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SDL.hpp" />
+    <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="Window.hpp" />
   </ItemGroup>

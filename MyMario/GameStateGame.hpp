@@ -3,6 +3,7 @@
 
 #include "GameState.hpp"
 #include "Window.hpp"
+#include "Sprite.hpp"
 #include "InputManager.hpp"
 #include "Player.hpp"
 
