@@ -25,16 +25,35 @@ void InputManager::update()
 
 	while (SDL_PollEvent(&event))
 	{
-		switch (event.key.keysym.sym)
+		switch (event.type)
 		{
-			case SDLK_ESCAPE:
+			case SDL_KEYDOWN:
+			{
+				switch (event.key.keysym.sym)
 				{
-					this->will_quit = true;
-				}
-				break;
+					case SDLK_LEFT:
+						break;
 
-			default:
-				break;
+					case SDLK_RIGHT:
+						break;
+
+					case SDLK_UP:
+						break;
+
+					case SDLK_DOWN:
+						break;
+
+					case SDLK_ESCAPE:
+						{
+							this->will_quit = true;
+						}
+						break;
+
+					default:
+						break;
+				}
+			}
+			break;
 		}
 	}
 }
