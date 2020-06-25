@@ -2,6 +2,7 @@
 #define SPRITE_HPP
 
 #include "Window.hpp"
+#include "Shapes.hpp"
 
 class Sprite
 {
@@ -9,12 +10,15 @@ class Sprite
 		Sprite(Window* window, std::string filename);
 		virtual ~Sprite();
 
+		void crop(Rectangle rect);
 		virtual void render(int x, int y);
 
 	protected:
 		Window* window;
 		std::string filename;
 		SDL_Texture* image;
+
+		Rectangle* clipRect;
 
 		int width;
 		int height;

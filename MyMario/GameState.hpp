@@ -12,6 +12,7 @@ class GameState
 		};
 
 		virtual ~GameState() {};
+
 		virtual void load(int stack = 0) = 0;
 		virtual int unload() = 0;
 		virtual StateCode update() = 0;

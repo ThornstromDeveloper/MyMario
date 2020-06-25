@@ -1,4 +1,5 @@
 #include "Sprite.hpp"
+#include "Shapes.hpp"
 #include <iostream>
 
 Sprite::Sprite(Window* window, std::string filename):
@@ -17,6 +18,9 @@ Sprite::Sprite(Window* window, std::string filename):
 
 	this->width = w;
 	this->height = h;
+
+	//set this->clipRect to original image size
+	this->crop(Rectangle(0, 0, this->width, this->height));
 }
 
 Sprite::~Sprite()
@@ -25,6 +29,16 @@ Sprite::~Sprite()
 	{
 		this->window->freeImage(this->image);
 	}
+}
+
+void Sprite::crop(Rectangle rect)
+{
+	if (!this->clipRect)
+	{
+		this->clipRect = new Rectangle;
+	}
+
+	this->clipRect->copy(&rect);
 }
 
 void Sprite::render(int x, int y)
