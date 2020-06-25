@@ -47,3 +47,13 @@ void Sprite::render(int x, int y)
 
 	this->window->renderImage(this->image, this->clipRect, &destination);
 }
+
+int Sprite::getWidth()
+{
+	return this->clipRect->w;
+}
+
+int Sprite::getHeight()
+{
+	return this->clipRect->h;
+}

@@ -12,6 +12,8 @@ class Sprite
 
 		void crop(Rectangle rect);
 		virtual void render(int x, int y);
+		int getWidth();
+		int getHeight();
 
 	protected:
 		Window* window;
