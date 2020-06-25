@@ -4,6 +4,7 @@
 
 GameStateGame::GameStateGame(Window* window):
 	window(window),
+	will_quit(false),
 	player(nullptr)
 {
 }
@@ -32,6 +33,11 @@ int GameStateGame::unload()
 
 GameState::StateCode GameStateGame::update()
 {
+	if (this->will_quit)
+	{
+		return GameState::StateCode::QUIT;
+	}
+
 	this->updateInput();
 
 	return GameState::StateCode::CONTINUE;
@@ -40,4 +46,8 @@ GameState::StateCode GameStateGame::update()
 void GameStateGame::updateInput()
 {
 	InputManager* input = InputManager::getInstance();
+
+	input->update();
+
+	this->will_quit = input->quitRequested();
 }

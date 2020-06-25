@@ -19,6 +19,7 @@ class GameStateGame: public GameState
 	private:
 		void updateInput();
 		Window* window;
+		bool will_quit;
 		Player* player;
 };
 

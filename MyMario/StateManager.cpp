@@ -30,11 +30,22 @@ void StateManager::run()
 
 		whatToDoNow = this->currentState->update();
 
+		switch (whatToDoNow)
+		{
+			case GameState::StateCode::CONTINUE:
+				break;
+
+			case GameState::StateCode::QUIT:
+				letsQuit = true;
+				break;
+
+			default:
+				break;
+		}
+
 		if (this->window)
 		{
 			this->window->clear();
 		}
-
-		letsQuit = true;
 	}
 }

@@ -5,6 +5,8 @@ class InputManager
 {
 	public:
 		static InputManager* getInstance();
+		void update();
+		bool quitRequested();
 		InputManager();
 
 	private:
