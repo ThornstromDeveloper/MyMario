@@ -11,6 +11,7 @@ class Player
 		enum FacingDirection { LEFT, RIGHT };
 		enum PossibleAnimation
 		{
+			STANDING_LEFT,
 			STANDING_RIGHT,
 			ANIMATION_MAX
 		};
@@ -29,6 +30,7 @@ class Player
 		Animation* currentAnimation;
 		std::vector<Animation*> animations;
 		FacingDirection facingDirection;
+		bool willChangeAnimation;
 };
 
 #endif //PLAYER_HPP

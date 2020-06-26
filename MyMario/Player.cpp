@@ -14,6 +14,9 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	this->animations.resize(ANIMATION_MAX);
 
 	tmp = new Animation(this->window, "resource/smb3_mario_sheet.png", 6, 2);
+	this->animations[STANDING_LEFT] = tmp;
+
+	tmp = new Animation(this->window, "resource/smb3_enemies.png", 6, 2);
 	this->animations[STANDING_RIGHT] = tmp;
 
 	this->currentAnimation = this->animations[STANDING_RIGHT];
@@ -40,12 +43,19 @@ void Player::updateInput()
 
 	if (input->isKeyPressed(KEY_LEFT))
 	{
+		if (this->facingDirection != LEFT) {
+			this->willChangeAnimation = true;
+		}
+
 		this->facingDirection = LEFT;
-		std::cout << "left key pressed\n";
 	}
 
 	if (input->isKeyPressed(KEY_RIGHT))
 	{
+		if (this->facingDirection != RIGHT) {
+			this->willChangeAnimation = true;
+		}
+
 		this->facingDirection = RIGHT;
 		std::cout << "right key pressed\n";
 	}
@@ -53,5 +63,26 @@ void Player::updateInput()
 
 void Player::updateAnimation()
 {
+	//advance frame
 	this->currentAnimation->update();
+
+	//change animation
+	if (this->willChangeAnimation)
+	{
+		Animation* tmp = nullptr;
+
+		if (this->facingDirection == RIGHT && this->willChangeAnimation)
+		{
+			tmp = this->animations[STANDING_RIGHT];
+		}
+		else if (this->facingDirection == LEFT && this->willChangeAnimation)
+		{
+			this->willChangeAnimation = true;
+			tmp = this->animations[STANDING_LEFT];
+		}
+
+		this->currentAnimation = tmp;
+	}
+
+	this->willChangeAnimation = false;
 }
