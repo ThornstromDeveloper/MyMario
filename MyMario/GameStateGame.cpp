@@ -18,8 +18,8 @@ void GameStateGame::load(int stack)
 	float playerX = 0;
 	float playerY = 0;
 
-	int playerW = 14;
-	int playerH = 27;
+	int playerW = 140;
+	int playerH = 270;
 
 	this->player = new Player(this->window, playerX, playerY, playerW, playerH,	100, 30);
 }

@@ -7,7 +7,7 @@
 class Animation: public Sprite
 {
 	public:
-		Animation(Window* window, std::string filepath, int ammount = 1, int framerate = 0, int loops = -1);
+		Animation(Window* window, std::string filepath, int amount = 1, int framerate = 0, int loops = -1);
 };
 
 #endif //ANIMATION_HPP
