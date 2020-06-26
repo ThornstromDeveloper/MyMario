@@ -1,10 +1,13 @@
 #include "InputManager.hpp"
+#include "InputDefinitions.hpp"
 #include <SDL.h>
 #include <iostream>
 
 InputManager* InputManager::instance = nullptr;
 
 InputManager::InputManager():
+	keyboard(nullptr),
+	keyDown(),
 	will_quit(false)
 { 
 }
@@ -21,37 +24,39 @@ InputManager* InputManager::getInstance()
 
 void InputManager::update()
 {
+	int i;
+	for (i = 0; i < KEYBOARD_SIZE; i++)
+	{
+		this->keyDown[i] = false;
+	}
+
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
+			case SDL_QUIT:
+				this->will_quit = true;
+				break;
+
 			case SDL_KEYDOWN:
-			{
-				switch (event.key.keysym.sym)
 				{
-					case SDLK_LEFT:
-						break;
+					this->keyboard = SDL_GetKeyboardState(nullptr);
 
-					case SDLK_RIGHT:
-						break;
+					int index = event.key.keysym.scancode;
 
-					case SDLK_UP:
-						break;
+					this->keyDown[index] = true;
 
-					case SDLK_DOWN:
-						break;
-
-					case SDLK_ESCAPE:
-						{
-							this->will_quit = true;
-						}
-						break;
-
-					default:
-						break;
+					if (this->keyDown[KEY_ESCAPE]) {
+						this->will_quit = true;
+					}
 				}
+				break;
+
+			case SDL_KEYUP:
+			{
+				std::cout << "Key was released";
 			}
 			break;
 		}
@@ -61,4 +66,21 @@ void InputManager::update()
 bool InputManager::quitRequested()
 {
 	return this->will_quit;
+}
+
+bool InputManager::isKeyPressed(KeyboardKey key)
+{
+	if (!this->keyboard)
+	{
+		return false;
+	}
+
+	int sdl_key = static_cast<int>(key);
+
+	if (this->keyboard[sdl_key])
+	{
+		return true;
+	}
+
+	return false;
 }

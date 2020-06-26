@@ -1,5 +1,7 @@
 #include "Player.hpp"
 #include "InputManager.hpp"
+#include "InputDefinitions.hpp"
+#include <iostream>
 
 Player::Player(Window* window, float x, float y, int w, int h, int hp, float acceleration):
 	window(window),
@@ -33,4 +35,14 @@ void Player::render()
 void Player::updateInput()
 {
 	InputManager* input = InputManager::getInstance();
+
+	if (input->isKeyPressed(KEY_LEFT))
+	{
+		std::cout << "left key pressed\n";
+	}
+
+	if (input->isKeyPressed(KEY_RIGHT))
+	{
+		std::cout << "right key pressed\n";
+	}
 }

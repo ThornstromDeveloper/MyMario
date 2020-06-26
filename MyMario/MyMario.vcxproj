@@ -164,6 +164,7 @@
     <ClInclude Include="Animation.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameStateGame.hpp" />
+    <ClInclude Include="InputDefinitions.hpp" />
     <ClInclude Include="InputManager.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SDL.hpp" />
