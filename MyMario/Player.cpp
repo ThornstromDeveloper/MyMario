@@ -6,7 +6,8 @@
 Player::Player(Window* window, float x, float y, int w, int h, int hp, float acceleration):
 	window(window),
 	acceleration(acceleration),
-	currentAnimation(nullptr)
+	currentAnimation(nullptr),
+	facingDirection(RIGHT)
 {
 	Animation* tmp = nullptr;
 
@@ -25,6 +26,7 @@ Player::~Player()
 void Player::update()
 {
 	this->updateInput();
+	this->updateAnimation();
 }
 
 void Player::render()
@@ -38,11 +40,18 @@ void Player::updateInput()
 
 	if (input->isKeyPressed(KEY_LEFT))
 	{
+		this->facingDirection = LEFT;
 		std::cout << "left key pressed\n";
 	}
 
 	if (input->isKeyPressed(KEY_RIGHT))
 	{
+		this->facingDirection = RIGHT;
 		std::cout << "right key pressed\n";
 	}
+}
+
+void Player::updateAnimation()
+{
+	this->currentAnimation->update();
 }

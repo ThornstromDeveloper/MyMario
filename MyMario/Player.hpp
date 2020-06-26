@@ -8,6 +8,7 @@
 class Player
 {
 	public:
+		enum FacingDirection { LEFT, RIGHT };
 		enum PossibleAnimation
 		{
 			STANDING_RIGHT,
@@ -20,12 +21,14 @@ class Player
 		void update();
 		void render();
 		void updateInput();
+		void updateAnimation();
 
 	private:
 		Window* window;
 		float acceleration;
 		Animation* currentAnimation;
 		std::vector<Animation*> animations;
+		FacingDirection facingDirection;
 };
 
 #endif //PLAYER_HPP

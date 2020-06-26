@@ -9,3 +9,8 @@ Animation::Animation(Window* window, std::string filename, int amount, int frame
 
 	this->crop(Rectangle(0, 0, frameW, frameH));
 }
+
+void Animation::update(float dt)
+{
+	this->crop(Rectangle(this->clipRect->x, this->clipRect->y, this->clipRect->w, this->clipRect->h));
+}
