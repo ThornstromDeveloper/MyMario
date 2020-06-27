@@ -15,8 +15,8 @@ GameStateGame::~GameStateGame()
 
 void GameStateGame::load(int stack)
 {
-	float playerX = 0;
-	float playerY = 0;
+	float playerX = 50;
+	float playerY = 70;
 
 	int playerW = 14;
 	int playerH = 27;

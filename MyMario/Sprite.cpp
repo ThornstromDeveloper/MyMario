@@ -4,7 +4,11 @@
 
 Sprite::Sprite(Window* window, std::string filename):
 	window(window),
-	filename(filename)
+	filename(filename),
+	image(nullptr),
+	clipRect(nullptr),
+	width(0),
+	height(0)
 {
 	this->image = window->loadImage(this->filename);
 
@@ -28,6 +32,11 @@ Sprite::~Sprite()
 	if (this->image)
 	{
 		this->window->freeImage(this->image);
+	}
+
+	if (this->clipRect)
+	{
+		delete this->clipRect;
 	}
 }
 

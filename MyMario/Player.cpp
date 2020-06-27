@@ -39,7 +39,7 @@ void Player::update()
 
 void Player::render()
 {
-	this->currentAnimation->render(0,0);
+	this->currentAnimation->render(this->position->x, this->position->y);
 }
 
 void Player::updateInput()
