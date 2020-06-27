@@ -10,4 +10,10 @@ FallingObject::FallingObject(float x, float y, int w, int h):
 
 FallingObject::~FallingObject()
 {
+	delete this->desiredPosition;
+}
+
+void FallingObject::preUpdate()
+{
+	this->desiredPosition->copy(this->box);
 }

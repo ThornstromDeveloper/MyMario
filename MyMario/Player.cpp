@@ -33,6 +33,7 @@ Player::~Player()
 
 void Player::update()
 {
+	this->preUpdate();
 	this->updateInput();
 	this->updateAnimation();
 }
