@@ -1,13 +1,16 @@
 #include "Animation.hpp"
 #include "Sprite.hpp"
 
-Animation::Animation(Window* window, std::string filename, int amount, int framerate, int loops):
+Animation::Animation(Window* window, Rectangle* size, std::string filename, int amount, int framerate, int loops):
 	Sprite(window, filename)
 {
-	int frameW = this->getWidth() / amount;
-	int frameH = this->getHeight();
+	int x = size->x;
+	int y = size->y;
+	int frameW = size->w / amount;
+	int frameH = size->h;
 
-	this->crop(Rectangle(0, 0, frameW, frameH));
+	//set part of image to display
+	this->crop(Rectangle(x, y, frameW, frameH));
 }
 
 void Animation::update(float dt)

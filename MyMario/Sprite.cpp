@@ -50,12 +50,11 @@ void Sprite::crop(Rectangle rect)
 	this->clipRect->copy(&rect);
 }
 
-void Sprite::render(int x, int y, Rectangle* box)
+void Sprite::render(int x, int y)
 {
-	Rectangle source = box;
-	Rectangle destination = Rectangle(box->x, box->y, box->w*2, box->h*2);
+	Rectangle destination(x, y, this->clipRect->w, this->clipRect->h);
 
-	this->window->renderImage(this->image, &source, &destination);
+	this->window->renderImage(this->image, this->clipRect, &destination);
 }
 
 int Sprite::getWidth()

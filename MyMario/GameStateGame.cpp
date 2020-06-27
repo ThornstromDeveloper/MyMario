@@ -15,11 +15,12 @@ GameStateGame::~GameStateGame()
 
 void GameStateGame::load(int stack)
 {
-	float playerX = 50;
-	float playerY = 70;
-
-	int playerW = 40;
+	float playerX = 600;
+	float playerY = 300;
+	int playerW = 50;
 	int playerH = 50;
+	int hp = 100;
+	float acceleration = 30;
 
 	this->player = new Player(this->window, playerX, playerY, playerW, playerH,	100, 30);
 }

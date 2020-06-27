@@ -7,7 +7,7 @@
 class Animation: public Sprite
 {
 	public:
-		Animation(Window* window, std::string filepath, int amount = 1, int framerate = 0, int loops = -1);
+		Animation(Window* window, Rectangle* size, std::string filepath, int amount = 1, int framerate = 0, int loops = -1);
 		virtual void update(float dt = 0);
 };
 

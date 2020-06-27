@@ -11,17 +11,20 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	facingDirection(Player::FacingDirection::RIGHT),
 	willChangeAnimation(false)
 {
-	Animation* tmp = nullptr;
+	Animation* tmp = nullptr;	
 
 	this->animations.resize(ANIMATION_MAX);
 
 	int frames = 1;
 	int frameRate = 30;
-
-	tmp = new Animation(this->window, "resource/smb3_mario_sheet.png", frames, frameRate);
+	Rectangle* frameBox = nullptr;
+	
+	frameBox = new Rectangle(80, 110, w, h);
+	tmp = new Animation(this->window, frameBox, "resource/smb3_mario_sheet.png", frames, frameRate);
 	this->animations[STANDING_LEFT] = tmp;
 
-	tmp = new Animation(this->window, "resource/smb3_enemies.png", frames, frameRate);
+	frameBox = new Rectangle(20, 20, w, h);
+	tmp = new Animation(this->window, frameBox, "resource/smb3_enemies.png", frames, frameRate);
 	this->animations[STANDING_RIGHT] = tmp;
 
 	this->currentAnimation = this->animations[STANDING_RIGHT];
@@ -40,7 +43,7 @@ void Player::update()
 
 void Player::render()
 {
-	this->currentAnimation->render(this->position->x, this->position->y, this->box);
+	this->currentAnimation->render(this->position->x, this->position->y);
 }
 
 void Player::updateInput()

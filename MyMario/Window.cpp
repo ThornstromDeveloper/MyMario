@@ -106,7 +106,7 @@ void Window::renderImage(SDL_Texture* texture, Rectangle* source, Rectangle* des
 	}
 
 	SDL_Rect sdl_source = { (int)source->x, (int)source->y, source->w, source->h };
-	SDL_Rect sdl_destination = { (int)destination->x, (int)destination->y, destination->w, destination->h };
+	SDL_Rect sdl_destination = { (int)destination->x, (int)destination->y, destination->w * 2, destination->h * 2 };
 
 	SDL_RenderCopy(this->renderer, texture, &sdl_source, &sdl_destination);
 }
