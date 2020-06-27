@@ -11,7 +11,7 @@ class Sprite
 		virtual ~Sprite();
 
 		void crop(Rectangle rect);
-		virtual void render(int x, int y);
+		virtual void render(int x, int y, Rectangle* box);
 		int getWidth();
 		int getHeight();
 

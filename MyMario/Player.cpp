@@ -40,7 +40,7 @@ void Player::update()
 
 void Player::render()
 {
-	this->currentAnimation->render(this->position->x, this->position->y);
+	this->currentAnimation->render(this->position->x, this->position->y, this->box);
 }
 
 void Player::updateInput()
