@@ -4,19 +4,24 @@
 #include <iostream>
 
 Player::Player(Window* window, float x, float y, int w, int h, int hp, float acceleration):
+	FallingObject(x, y, w, h),
 	window(window),
 	acceleration(acceleration),
 	currentAnimation(nullptr),
-	facingDirection(RIGHT)
+	facingDirection(Player::FacingDirection::RIGHT),
+	willChangeAnimation(false)
 {
 	Animation* tmp = nullptr;
 
 	this->animations.resize(ANIMATION_MAX);
 
-	tmp = new Animation(this->window, "resource/smb3_mario_sheet.png", 6, 2);
+	int frames = 1;
+	int frameRate = 30;
+
+	tmp = new Animation(this->window, "resource/smb3_mario_sheet.png", frames, frameRate);
 	this->animations[STANDING_LEFT] = tmp;
 
-	tmp = new Animation(this->window, "resource/smb3_enemies.png", 6, 2);
+	tmp = new Animation(this->window, "resource/smb3_enemies.png", frames, frameRate);
 	this->animations[STANDING_RIGHT] = tmp;
 
 	this->currentAnimation = this->animations[STANDING_RIGHT];
@@ -43,20 +48,20 @@ void Player::updateInput()
 
 	if (input->isKeyPressed(KEY_LEFT))
 	{
-		if (this->facingDirection != LEFT) {
+		if (this->facingDirection != Player::FacingDirection::LEFT) {
 			this->willChangeAnimation = true;
 		}
 
-		this->facingDirection = LEFT;
+		this->facingDirection = Player::FacingDirection::LEFT;
 	}
 
 	if (input->isKeyPressed(KEY_RIGHT))
 	{
-		if (this->facingDirection != RIGHT) {
+		if (this->facingDirection != Player::FacingDirection::RIGHT) {
 			this->willChangeAnimation = true;
 		}
 
-		this->facingDirection = RIGHT;
+		this->facingDirection = Player::FacingDirection::RIGHT;
 		std::cout << "right key pressed\n";
 	}
 }
@@ -71,11 +76,11 @@ void Player::updateAnimation()
 	{
 		Animation* tmp = nullptr;
 
-		if (this->facingDirection == RIGHT && this->willChangeAnimation)
+		if (this->facingDirection == Player::FacingDirection::RIGHT && this->willChangeAnimation)
 		{
 			tmp = this->animations[STANDING_RIGHT];
 		}
-		else if (this->facingDirection == LEFT && this->willChangeAnimation)
+		else if (this->facingDirection == Player::FacingDirection::LEFT && this->willChangeAnimation)
 		{
 			this->willChangeAnimation = true;
 			tmp = this->animations[STANDING_LEFT];

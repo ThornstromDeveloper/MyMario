@@ -146,6 +146,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="FallingObject.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStateGame.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -162,6 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.hpp" />
+    <ClInclude Include="FallingObject.hpp" />
+    <ClInclude Include="GameObject.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameStateGame.hpp" />
     <ClInclude Include="InputDefinitions.hpp" />
