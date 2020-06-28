@@ -79,23 +79,23 @@ void Player::updateInput()
 {
 	InputManager* input = InputManager::getInstance();
 
-	this->ducking = false;
-	this->walking_left = false;
-	this->walking_right = false;
-
-	if (input->isKeyPressed(KEY_LEFT))
+	if (input->isKeyReleased())
+	{
+		this->ducking = false;
+		this->walking_left = false;
+		this->walking_right = false;
+	}
+	else if (input->isKeyPressed(KEY_LEFT))
 	{
 		this->facingDirection = Player::FacingDirection::LEFT;
 		this->walking_left = true;
 	}
-
-	if (input->isKeyPressed(KEY_RIGHT))
+	else if (input->isKeyPressed(KEY_RIGHT))
 	{
 		this->facingDirection = Player::FacingDirection::RIGHT;
 		this->walking_right = true;
 	}
-
-	if (input->isKeyPressed(KEY_DOWN))
+	else if (input->isKeyPressed(KEY_DOWN))
 	{
 		this->ducking = true;
 	}

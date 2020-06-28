@@ -41,7 +41,9 @@ void InputManager::update()
 		}	
 		//Key pressed
 		else if (event.type == SDL_KEYDOWN)
-		{			
+		{	
+			this->keyReleased = false;
+
 			this->keyboard = SDL_GetKeyboardState(nullptr);
 
 			int index = event.key.keysym.scancode;
@@ -56,6 +58,7 @@ void InputManager::update()
 		//Key released
 		else if (event.type == SDL_KEYUP)
 		{
+			this->keyReleased = true;
 		}
 	}
 }
@@ -80,4 +83,9 @@ bool InputManager::isKeyPressed(KeyboardKey key)
 	}
 
 	return false;
+}
+
+bool InputManager::isKeyReleased()
+{
+	return this->keyReleased;
 }

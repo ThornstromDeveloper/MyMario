@@ -9,7 +9,8 @@ class InputManager
 		static InputManager* getInstance();
 		void update();
 		bool isKeyPressed(KeyboardKey key);
-		bool quitRequested();
+		bool isKeyReleased();
+		bool quitRequested();		
 
 		InputManager();
 		void operator=(InputManager const&) {};
@@ -18,7 +19,8 @@ class InputManager
 		static InputManager* instance;
 		const uint8_t* keyboard;
 		bool keyDown[KEYBOARD_SIZE];
-		bool will_quit;
+		bool keyReleased;
+		bool will_quit;		
 };
 
 #endif //INPUTMANAGER_HPP
