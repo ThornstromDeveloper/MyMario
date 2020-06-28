@@ -13,7 +13,7 @@ FallingObject::~FallingObject()
 	delete this->desiredPosition;
 }
 
-void FallingObject::preUpdate()
+void FallingObject::preUpdate(float dt)
 {
 	this->desiredPosition->copy(this->box);
 }

@@ -26,9 +26,15 @@ void StateManager::run()
 
 	while (!letsQuit)
 	{
+		//how many milliseconds the last frame took
+		unsigned int delta_ms = this->window->getDelta();
+
+		//how many seconds have passed since last frame
+		float delta = (float)(delta_ms) / 1000.0;
+
 		GameState::StateCode whatToDoNow;
 
-		whatToDoNow = this->currentState->update();
+		whatToDoNow = this->currentState->update(delta);
 
 		switch (whatToDoNow)
 		{

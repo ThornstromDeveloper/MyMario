@@ -141,3 +141,20 @@ void Window::setTitle(std::string title)
 		SDL_SetWindowTitle(this->window, title.c_str());
 	}
 }
+
+void Window::delayFramerateIfNeeded()
+{
+	this->current_frame_delta = this->framerateTimer.delta();
+
+	if (this->current_frame_delta < this->frame_delay)
+	{
+		SDL_Delay(this->frame_delay - this->current_frame_delta);
+	}
+
+	this->framerateTimer.restart();
+}
+
+unsigned int Window::getDelta()
+{
+	return this->current_frame_delta;
+}

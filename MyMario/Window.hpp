@@ -3,7 +3,8 @@
 
 #include <string>
 #include <SDL.h>
-#include "shapes.hpp"
+#include "Shapes.hpp"
+#include "Timer.hpp"
 
 class Window
 {
@@ -26,8 +27,16 @@ class Window
 		SDL_Surface* surface;
 		SDL_Renderer* renderer;
 
+		void delayFramerateIfNeeded();
+		unsigned int getDelta();
+
 	private:
 		std::string title;
+		Timer framerateTimer;
+
+		unsigned int framerate;
+		unsigned int frame_delay;
+		unsigned int current_frame_delta;
 };
 
 #endif //WINDOW_HPP

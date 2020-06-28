@@ -21,7 +21,7 @@ class Player: public FallingObject
 		Player(Window* window, float x, float y, int w, int h, int hp, float acceleration);
 		virtual ~Player();
 
-		void update();
+		void update(float dt);
 		void render();
 		void updateInput();
 		void updateAnimation();

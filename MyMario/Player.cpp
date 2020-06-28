@@ -62,9 +62,9 @@ Player::~Player()
 	delete this->currentAnimation;
 }
 
-void Player::update()
+void Player::update(float dt)
 {
-	this->preUpdate();
+	this->preUpdate(dt);
 	this->updateInput();
 	this->updateAnimation();
 }

@@ -36,7 +36,7 @@ int GameStateGame::unload()
 	return 0;
 }
 
-GameState::StateCode GameStateGame::update()
+GameState::StateCode GameStateGame::update(float dt)
 {
 	if (this->will_quit)
 	{
@@ -45,7 +45,7 @@ GameState::StateCode GameStateGame::update()
 
 	this->updateInput();
 
-	this->player->update();
+	this->player->update(dt);
 
 	return GameState::StateCode::CONTINUE;
 }

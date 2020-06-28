@@ -15,7 +15,7 @@ class GameStateGame: public GameState
 
 		void load(int stack = 0);
 		int unload();
-		GameState::StateCode update();
+		GameState::StateCode update(float dt);
 		void render();
 
 	private:

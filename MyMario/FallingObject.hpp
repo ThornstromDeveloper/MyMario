@@ -9,7 +9,7 @@ class FallingObject: public GameObject
 		FallingObject(float x, float y, int w, int h);
 		virtual ~FallingObject();
 
-		void preUpdate();
+		void preUpdate(float dt);
 		Rectangle* desiredPosition;
 };
 
