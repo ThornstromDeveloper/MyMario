@@ -9,7 +9,8 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	acceleration(acceleration),
 	currentAnimation(nullptr),
 	facingDirection(Player::FacingDirection::RIGHT),
-	willChangeAnimation(false)
+	willChangeAnimation(false),
+	ducking(false)
 {
 	Animation* tmp = nullptr;	
 
@@ -19,18 +20,25 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	int frameRate = 30;
 	Rectangle* frameBox = nullptr;
 	bool flip;
+	std::string frameSheet = "resource/smb3_mario_sheet.png";
 	
-	//player standing left
-	frameBox = new Rectangle(85, 110, w, h);
-	flip = false;
-	tmp = new Animation(this->window, frameBox, "resource/smb3_mario_sheet.png", frames, frameRate, flip);
+	//player standing left/right
+	frameBox = new Rectangle(0, 80, w, h);
+
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
 	this->animations[STANDING_LEFT] = tmp;
 
-	//player standing right
-	frameBox = new Rectangle(85, 110, w, h);
-	flip = true;
-	tmp = new Animation(this->window, frameBox, "resource/smb3_mario_sheet.png", frames, frameRate, flip);
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = true);
 	this->animations[STANDING_RIGHT] = tmp;
+
+	//player ducking left
+	frameBox = new Rectangle(120, 80, w, h);
+
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
+	this->animations[DUCKING_LEFT] = tmp;
+
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = true);
+	this->animations[DUCKING_RIGHT] = tmp;
 
 	//current animation state
 	this->currentAnimation = this->animations[STANDING_RIGHT];
@@ -58,22 +66,21 @@ void Player::updateInput()
 {
 	InputManager* input = InputManager::getInstance();
 
+	this->ducking = false;
+
 	if (input->isKeyPressed(KEY_LEFT))
 	{
-		if (this->facingDirection != Player::FacingDirection::LEFT) {
-			this->willChangeAnimation = true;
-		}
-
 		this->facingDirection = Player::FacingDirection::LEFT;
 	}
 
 	if (input->isKeyPressed(KEY_RIGHT))
 	{
-		if (this->facingDirection != Player::FacingDirection::RIGHT) {
-			this->willChangeAnimation = true;
-		}
-
 		this->facingDirection = Player::FacingDirection::RIGHT;
+	}
+
+	if (input->isKeyPressed(KEY_DOWN))
+	{
+		this->ducking = true;
 	}
 }
 
@@ -82,23 +89,32 @@ void Player::updateAnimation()
 	//advance frame
 	this->currentAnimation->update();
 
-	//change animation
-	if (this->willChangeAnimation)
-	{
-		Animation* tmp = nullptr;
+	Animation* tmp = nullptr;
 
-		if (this->facingDirection == Player::FacingDirection::RIGHT && this->willChangeAnimation)
+	//change facing direction
+	if (this->ducking)
+	{
+		if (this->facingDirection == Player::FacingDirection::RIGHT)
+		{
+			tmp = this->animations[DUCKING_RIGHT];
+		}
+		else if (this->facingDirection == Player::FacingDirection::LEFT)
+		{
+			tmp = this->animations[DUCKING_LEFT];
+		}
+	}
+	else
+	{
+		if (this->facingDirection == Player::FacingDirection::RIGHT)
 		{
 			tmp = this->animations[STANDING_RIGHT];
 		}
-		else if (this->facingDirection == Player::FacingDirection::LEFT && this->willChangeAnimation)
+		else if (this->facingDirection == Player::FacingDirection::LEFT)
 		{
-			this->willChangeAnimation = true;
 			tmp = this->animations[STANDING_LEFT];
 		}
-
-		this->currentAnimation = tmp;
 	}
 
+	this->currentAnimation = tmp;
 	this->willChangeAnimation = false;
 }
