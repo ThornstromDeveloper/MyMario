@@ -91,7 +91,7 @@ void Player::updateAnimation()
 
 	Animation* tmp = nullptr;
 
-	//change facing direction
+	//player ducking
 	if (this->ducking)
 	{
 		if (this->facingDirection == Player::FacingDirection::RIGHT)
@@ -103,6 +103,7 @@ void Player::updateAnimation()
 			tmp = this->animations[DUCKING_LEFT];
 		}
 	}
+	//player standing
 	else
 	{
 		if (this->facingDirection == Player::FacingDirection::RIGHT)
