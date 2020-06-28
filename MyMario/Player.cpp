@@ -10,17 +10,20 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	currentAnimation(nullptr),
 	facingDirection(Player::FacingDirection::RIGHT),
 	willChangeAnimation(false),
+	walking_left(false),
+	walking_right(false),
 	ducking(false)
 {
 	Animation* tmp = nullptr;	
 
 	this->animations.resize(ANIMATION_MAX);
 
+	//parameters
+	Rectangle* frameBox = nullptr;
+	std::string frameSheet = "resource/smb3_mario_sheet.png";
 	int frames = 1;
 	int frameRate = 30;
-	Rectangle* frameBox = nullptr;
 	bool flip;
-	std::string frameSheet = "resource/smb3_mario_sheet.png";
 	
 	//standing
 	frameBox = new Rectangle(0, 80, w, h);
