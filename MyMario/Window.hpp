@@ -12,7 +12,7 @@ class Window
 		virtual ~Window();
 
 		void destroy();
-		void renderImage(SDL_Texture* texture, Rectangle* source, Rectangle* destination);
+		void renderImage(SDL_Texture* texture, Rectangle* source, Rectangle* destination, bool flip);
 		SDL_Texture* loadImage(std::string filename);
 		void freeImage(SDL_Texture* image);
 		void freeImage(SDL_Surface* image);

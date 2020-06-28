@@ -97,7 +97,7 @@ void Window::freeImage(SDL_Surface* image)
 	}
 }
 
-void Window::renderImage(SDL_Texture* texture, Rectangle* source, Rectangle* destination)
+void Window::renderImage(SDL_Texture* texture, Rectangle* source, Rectangle* destination, bool flip)
 {
 	if (!texture || !source || !destination)
 	{
@@ -105,10 +105,24 @@ void Window::renderImage(SDL_Texture* texture, Rectangle* source, Rectangle* des
 		return;
 	}
 
-	SDL_Rect sdl_source = { (int)source->x, (int)source->y, source->w, source->h };
-	SDL_Rect sdl_destination = { (int)destination->x, (int)destination->y, destination->w * 2, destination->h * 2 };
+	float scale = 2;
 
-	SDL_RenderCopy(this->renderer, texture, &sdl_source, &sdl_destination);
+	//source portion rectangle
+	SDL_Rect sdl_source = { (int)source->x, (int)source->y, source->w, source->h };
+
+	//destination portion rectangle
+	SDL_Rect sdl_destination = { (int)destination->x, (int)destination->y, destination->w * scale, destination->h * scale };
+
+	//copy portion of the texture to the renderer
+	if (!flip)
+	{
+		SDL_RenderCopy(this->renderer, texture, &sdl_source, &sdl_destination);
+	}
+	else
+	{
+		sdl_destination.x += 10;
+		SDL_RenderCopyEx(this->renderer, texture, &sdl_source, &sdl_destination, 0, NULL, SDL_FLIP_HORIZONTAL);
+	}	
 }
 
 void Window::fill() {

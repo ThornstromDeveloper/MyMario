@@ -15,10 +15,14 @@ GameStateGame::~GameStateGame()
 
 void GameStateGame::load(int stack)
 {
+	//starting point
 	float playerX = 600;
 	float playerY = 300;
-	int playerW = 50;
+
+	//size of texture portion
+	int playerW = 40;
 	int playerH = 50;
+	
 	int hp = 100;
 	float acceleration = 30;
 

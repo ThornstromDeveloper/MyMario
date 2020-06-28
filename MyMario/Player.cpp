@@ -18,20 +18,27 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	int frames = 1;
 	int frameRate = 30;
 	Rectangle* frameBox = nullptr;
+	bool flip;
 	
-	frameBox = new Rectangle(80, 110, w, h);
-	tmp = new Animation(this->window, frameBox, "resource/smb3_mario_sheet.png", frames, frameRate);
+	//player standing left
+	frameBox = new Rectangle(85, 110, w, h);
+	flip = false;
+	tmp = new Animation(this->window, frameBox, "resource/smb3_mario_sheet.png", frames, frameRate, flip);
 	this->animations[STANDING_LEFT] = tmp;
 
-	frameBox = new Rectangle(20, 20, w, h);
-	tmp = new Animation(this->window, frameBox, "resource/smb3_enemies.png", frames, frameRate);
+	//player standing right
+	frameBox = new Rectangle(85, 110, w, h);
+	flip = true;
+	tmp = new Animation(this->window, frameBox, "resource/smb3_mario_sheet.png", frames, frameRate, flip);
 	this->animations[STANDING_RIGHT] = tmp;
 
+	//current animation state
 	this->currentAnimation = this->animations[STANDING_RIGHT];
 }
 
 Player::~Player()
 {
+	delete this->currentAnimation;
 }
 
 void Player::update()
@@ -43,7 +50,8 @@ void Player::update()
 
 void Player::render()
 {
-	this->currentAnimation->render(this->position->x, this->position->y);
+	bool flip = this->currentAnimation->flip;
+	this->currentAnimation->render(this->position->x, this->position->y, flip);
 }
 
 void Player::updateInput()
@@ -66,7 +74,6 @@ void Player::updateInput()
 		}
 
 		this->facingDirection = Player::FacingDirection::RIGHT;
-		std::cout << "right key pressed\n";
 	}
 }
 

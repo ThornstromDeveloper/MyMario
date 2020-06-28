@@ -8,7 +8,8 @@ Sprite::Sprite(Window* window, std::string filename):
 	image(nullptr),
 	clipRect(nullptr),
 	width(0),
-	height(0)
+	height(0),
+	flip(false)
 {
 	this->image = window->loadImage(this->filename);
 
@@ -50,11 +51,11 @@ void Sprite::crop(Rectangle rect)
 	this->clipRect->copy(&rect);
 }
 
-void Sprite::render(int x, int y)
+void Sprite::render(int x, int y, bool flip)
 {
 	Rectangle destination(x, y, this->clipRect->w, this->clipRect->h);
 
-	this->window->renderImage(this->image, this->clipRect, &destination);
+	this->window->renderImage(this->image, this->clipRect, &destination, flip);
 }
 
 int Sprite::getWidth()

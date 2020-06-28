@@ -11,7 +11,7 @@ class Sprite
 		virtual ~Sprite();
 
 		void crop(Rectangle rect);
-		virtual void render(int x, int y);
+		virtual void render(int x, int y, bool flip);
 		int getWidth();
 		int getHeight();
 
@@ -24,6 +24,7 @@ class Sprite
 
 		int width;
 		int height;
+		bool flip;
 };
 
 #endif //SPRITE_HPP

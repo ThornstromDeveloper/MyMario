@@ -33,32 +33,29 @@ void InputManager::update()
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event))
-	{
-		switch (event.type)
+	{		
+		//Exit program requested
+		if (event.type == SDL_QUIT)
 		{
-			case SDL_QUIT:
-				this->will_quit = true;
-				break;
+			this->will_quit = true;
+		}	
+		//Key pressed
+		else if (event.type == SDL_KEYDOWN)
+		{			
+			this->keyboard = SDL_GetKeyboardState(nullptr);
 
-			case SDL_KEYDOWN:
-				{
-					this->keyboard = SDL_GetKeyboardState(nullptr);
+			int index = event.key.keysym.scancode;
 
-					int index = event.key.keysym.scancode;
+			this->keyDown[index] = true;
 
-					this->keyDown[index] = true;
-
-					if (this->keyDown[KEY_ESCAPE]) {
-						this->will_quit = true;
-					}
-				}
-				break;
-
-			case SDL_KEYUP:
-			{
-				std::cout << "Key was released";
+			if (this->keyDown[KEY_ESCAPE]) {
+				event.type = SDL_QUIT;
+				SDL_PushEvent(&event);
 			}
-			break;
+		}
+		//Key released
+		else if (event.type == SDL_KEYUP)
+		{
 		}
 	}
 }
