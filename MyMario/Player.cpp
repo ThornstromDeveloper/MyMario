@@ -22,7 +22,7 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	bool flip;
 	std::string frameSheet = "resource/smb3_mario_sheet.png";
 	
-	//player standing left/right
+	//standing
 	frameBox = new Rectangle(0, 80, w, h);
 
 	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
@@ -31,7 +31,7 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = true);
 	this->animations[STANDING_RIGHT] = tmp;
 
-	//player ducking left
+	//ducking
 	frameBox = new Rectangle(120, 80, w, h);
 
 	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
@@ -39,6 +39,15 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 
 	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = true);
 	this->animations[DUCKING_RIGHT] = tmp;
+
+	//walking
+	frameBox = new Rectangle(30, 80, w, h);
+
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
+	this->animations[WALKING_LEFT] = tmp;
+
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = true);
+	this->animations[WALKING_RIGHT] = tmp;
 
 	//current animation state
 	this->currentAnimation = this->animations[STANDING_RIGHT];
@@ -67,15 +76,19 @@ void Player::updateInput()
 	InputManager* input = InputManager::getInstance();
 
 	this->ducking = false;
+	this->walking_left = false;
+	this->walking_right = false;
 
 	if (input->isKeyPressed(KEY_LEFT))
 	{
 		this->facingDirection = Player::FacingDirection::LEFT;
+		this->walking_left = true;
 	}
 
 	if (input->isKeyPressed(KEY_RIGHT))
 	{
 		this->facingDirection = Player::FacingDirection::RIGHT;
+		this->walking_right = true;
 	}
 
 	if (input->isKeyPressed(KEY_DOWN))
@@ -91,31 +104,52 @@ void Player::updateAnimation()
 
 	Animation* tmp = nullptr;
 
-	//player ducking
+	//ducking
 	if (this->ducking)
 	{
-		if (this->facingDirection == Player::FacingDirection::RIGHT)
+		if (this->facingDirection == Player::FacingDirection::RIGHT && this->currentAnimation != this->animations[DUCKING_RIGHT])
 		{
 			tmp = this->animations[DUCKING_RIGHT];
+			this->willChangeAnimation = true;
 		}
-		else if (this->facingDirection == Player::FacingDirection::LEFT)
+		else if (this->facingDirection == Player::FacingDirection::LEFT && this->currentAnimation != this->animations[DUCKING_LEFT])
 		{
 			tmp = this->animations[DUCKING_LEFT];
+			this->willChangeAnimation = true;
 		}
 	}
-	//player standing
+	//walking
+	else if (this->walking_left || this->walking_right)
+	{
+		if (this->facingDirection == Player::FacingDirection::RIGHT && this->currentAnimation != this->animations[WALKING_RIGHT])
+		{
+			tmp = this->animations[WALKING_RIGHT];
+			this->willChangeAnimation = true;
+		}
+		else if (this->facingDirection == Player::FacingDirection::LEFT && this->currentAnimation != this->animations[WALKING_LEFT])
+		{
+			tmp = this->animations[WALKING_LEFT];
+			this->willChangeAnimation = true;
+		}
+	}
+	//standing
 	else
 	{
-		if (this->facingDirection == Player::FacingDirection::RIGHT)
+		if (this->facingDirection == Player::FacingDirection::RIGHT && this->currentAnimation != this->animations[STANDING_RIGHT])
 		{
 			tmp = this->animations[STANDING_RIGHT];
+			this->willChangeAnimation = true;
 		}
-		else if (this->facingDirection == Player::FacingDirection::LEFT)
+		else if (this->facingDirection == Player::FacingDirection::LEFT && this->currentAnimation != this->animations[STANDING_LEFT])
 		{
 			tmp = this->animations[STANDING_LEFT];
+			this->willChangeAnimation = true;
 		}
 	}
 
-	this->currentAnimation = tmp;
-	this->willChangeAnimation = false;
+	if (this->willChangeAnimation)
+	{
+		this->currentAnimation = tmp;
+		this->willChangeAnimation = false;
+	}
 }

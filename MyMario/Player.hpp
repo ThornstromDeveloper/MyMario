@@ -12,10 +12,9 @@ class Player: public FallingObject
 		enum class FacingDirection { LEFT, RIGHT };
 		enum PossibleAnimation
 		{
-			STANDING_LEFT,
-			STANDING_RIGHT,
-			DUCKING_LEFT,
-			DUCKING_RIGHT,
+			STANDING_LEFT, STANDING_RIGHT,
+			DUCKING_LEFT, DUCKING_RIGHT,
+			WALKING_LEFT, WALKING_RIGHT,
 			ANIMATION_MAX
 		};
 
@@ -34,8 +33,11 @@ class Player: public FallingObject
 		std::vector<Animation*> animations;
 
 		FacingDirection facingDirection;
-		bool ducking;
 		bool willChangeAnimation;
+
+		bool ducking;
+		bool walking_left;
+		bool walking_right;
 };
 
 #endif //PLAYER_HPP
