@@ -54,6 +54,7 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 
 	//current animation state
 	this->currentAnimation = this->animations[STANDING_RIGHT];
+	this->currentAnimation->start();
 }
 
 Player::~Player()

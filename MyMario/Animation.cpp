@@ -66,3 +66,11 @@ void Animation::firstFrame()
 		this->timesLooped++;
 	}
 }
+
+void Animation::start()
+{
+	this->curFrame = 0;
+	this->clipRect->x = 0;
+	this->timesLooped = 0;
+	this->timer.start();
+}

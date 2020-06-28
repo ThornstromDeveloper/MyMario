@@ -13,6 +13,7 @@ class Animation: public Sprite
 
 		void nextFrame();
 		void firstFrame();
+		void start();
 		bool flip;
 
 	private:
