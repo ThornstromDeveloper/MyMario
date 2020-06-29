@@ -32,7 +32,7 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
 	this->animations[STANDING_LEFT] = tmp;
 
-	tmp = new Animation(this->window, frameBox, frameSheet, frames = 1, frameRate, flip = true);
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = true);
 	this->animations[STANDING_RIGHT] = tmp;
 
 	//ducking
