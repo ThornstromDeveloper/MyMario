@@ -24,7 +24,7 @@ Sprite::Sprite(Window* window, std::string filename):
 	this->width = w;
 	this->height = h;
 
-	//set this->clipRect to original image size
+	//set this->clipRect to original image
 	this->crop(Rectangle(0, 0, this->width, this->height));
 }
 

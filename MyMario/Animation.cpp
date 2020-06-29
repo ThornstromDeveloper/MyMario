@@ -1,7 +1,7 @@
 #include "Animation.hpp"
 #include "Sprite.hpp"
 
-Animation::Animation(Window* window, Rectangle* size, std::string filename, int amount, int framerate, bool flip, int loops):
+Animation::Animation(Window* window, Rectangle* selected_box, std::string filename, int amount, int framerate, bool flip, int loops):
 	Sprite(window, filename),
 	framerate(framerate),
 	curFrame(0),
@@ -9,15 +9,15 @@ Animation::Animation(Window* window, Rectangle* size, std::string filename, int 
 	loops(loops),
 	timesLooped(0)
 {
-	int x = size->x;
-	int y = size->y;
-	int frameW = size->w / amount;
-	int frameH = size->h;
+	int source_x = selected_box->x;
+	int source_y = selected_box->y;
+	int frameW = selected_box->w / amount;
+	int frameH = selected_box->h;
 
 	this->flip = flip;
 
 	//set part of image to display
-	this->crop(Rectangle(x, y, frameW, frameH));
+	this->crop(Rectangle(source_x, source_y, frameW, frameH));
 }
 
 void Animation::update(float dt)

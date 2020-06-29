@@ -21,35 +21,38 @@ Player::Player(Window* window, float x, float y, int w, int h, int hp, float acc
 	//parameters
 	Rectangle* frameBox = nullptr;
 	std::string frameSheet = "resource/smb3_mario_sheet.png";
-	int frames;
 	int frameRate = 30;
 	bool flip;
+	int frames;
 	
 	//standing
-	frameBox = new Rectangle(0, 80, w, h);
+	frames = 1;
+	frameBox = new Rectangle(0, 80, w * frames, h);
 
-	tmp = new Animation(this->window, frameBox, frameSheet, frames = 1, frameRate, flip = false);
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
 	this->animations[STANDING_LEFT] = tmp;
 
-	tmp = new Animation(this->window, frameBox, frameSheet, frames  = 1, frameRate, flip = true);
+	tmp = new Animation(this->window, frameBox, frameSheet, frames = 1, frameRate, flip = true);
 	this->animations[STANDING_RIGHT] = tmp;
 
 	//ducking
-	frameBox = new Rectangle(120, 80, w, h);
+	frames = 1;
+	frameBox = new Rectangle(120, 80, w * frames, h);
 
-	tmp = new Animation(this->window, frameBox, frameSheet, frames = 1, frameRate, flip = false);
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
 	this->animations[DUCKING_LEFT] = tmp;
 
-	tmp = new Animation(this->window, frameBox, frameSheet, frames = 1, frameRate, flip = true);
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = true);
 	this->animations[DUCKING_RIGHT] = tmp;
 
 	//walking
-	frameBox = new Rectangle(30, 80, w, h);
+	frames = 2;
+	frameBox = new Rectangle(30, 80, w * frames, h);
 
-	tmp = new Animation(this->window, frameBox, frameSheet, frames = 1, frameRate, flip = false);
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = false);
 	this->animations[WALKING_LEFT] = tmp;
 
-	tmp = new Animation(this->window, frameBox, frameSheet, frames = 1, frameRate, flip = true);
+	tmp = new Animation(this->window, frameBox, frameSheet, frames, frameRate, flip = true);
 	this->animations[WALKING_RIGHT] = tmp;
 
 	//current animation state
