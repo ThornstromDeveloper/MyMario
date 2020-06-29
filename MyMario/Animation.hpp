@@ -14,6 +14,7 @@ class Animation: public Sprite
 		void nextFrame();
 		void firstFrame();
 		void start();
+		void stop();
 		bool flip;
 
 	private:

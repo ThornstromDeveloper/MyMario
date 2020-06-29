@@ -156,7 +156,10 @@ void Player::updateAnimation()
 
 	if (this->willChangeAnimation)
 	{
+		this->currentAnimation->start();
 		this->currentAnimation = tmp;
+		this->currentAnimation->stop();
+
 		this->willChangeAnimation = false;
 	}
 }

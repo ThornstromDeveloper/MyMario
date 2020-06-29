@@ -73,3 +73,8 @@ void Animation::start()
 	this->timesLooped = 0;
 	this->timer.start();
 }
+
+void Animation::stop()
+{
+	this->timer.stop();
+}
